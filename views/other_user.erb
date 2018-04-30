@@ -1,0 +1,5 @@
+
+<h1><%=@other_user.first_name%></h1>
+<% @posts.each do |post|%>
+<a href='/post/<%=post.id%>'><h3> <%=post.post_name%></h3></a>   
+<%end%>

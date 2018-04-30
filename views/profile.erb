@@ -1,0 +1,25 @@
+<h3>Welcome, <%=@user.first_name%></h3>
+<% @posts = Post.where(user_id: session[:id])%>
+<%# <a href='/logout'>Logout</a> %>
+
+<form action="/delete"<%= @user.id %>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit">Delete Account</button>
+</form>
+
+<h3>What do you want to write about today?</h3>
+
+<form method="POST" action="/post/new">
+  <input type="text" name="post_name" placeholder="Post Name">
+  <input type="text" name="content" placeholder="Content">
+
+  <button type="submit">Post</button>
+
+</form>
+
+<% @posts.each do |post|%>
+<a href='/post/<%=post.id%>'><h6> <%=post.post_name%></h6></a> 
+<%end%>
+
+<%# <%=@other_user.first_name%>
+<% @posts = Post.where(user_id: @user.id)%>
