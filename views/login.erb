@@ -7,7 +7,7 @@
 
 
 
-
+<%# 
 <section id="contact" class="section section-contact scrollspy">
 <form  method="POST" action="/user/login">
     <div class="container">
@@ -20,14 +20,43 @@
               <label for="email">Email</label>
               </div>
               <div class="input-field"> 
-              <input type="text" placeholder="Password" name="password" id="password" required>
+              <input type="password" placeholder="Password" name="password" id="password" required>
               <label for="password">Password</label>
+               <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
             </div>
             <input type="submit" value="Submit" class="btn">
           </div>
         </div>
       </div>
     </form>
-  </section>
+  </section> %>
 
+
+<div class="container">
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form class="form-horizontal" method="" action="">
+
+          <div class="form-group">
+            <label class="col-md-4 control-label">Email</label>
+            <div class="col-md-6">
+              <input type="email" class="form-control" name="email" value="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-md-4 control-label">Password</label>
+            <div class="col-md-6">
+              <input id="password-field" type="password" class="form-control" name="password" value="secret">
+              <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
