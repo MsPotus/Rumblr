@@ -5,7 +5,7 @@ require 'shotgun'
 require_relative './models/User'
 require_relative './models/Post'
 
-set :database, {adapter: 'postgresql', database: 'usersandposts'}
+# set :database, {adapter: 'postgresql', database: 'usersandposts'}
 enable :sessions
 
 get '/' do
