@@ -1,3 +1,7 @@
+/* html {
+    height: 600px;
+} */
+
 .slider .btn {
     margin-top: 20px;
 }
@@ -6,7 +10,7 @@ body {
     background-color: lightskyblue
 }
 
-field-icon {
+.field-icon {
     float: right;
     margin-left: -25px;
     margin-top: -25px;
@@ -17,4 +21,25 @@ field-icon {
 .container {
     padding-top: 50px;
     margin: auto;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+}
+
+section.slider ul.slides {
+    height: 100%;
 }

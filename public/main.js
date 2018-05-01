@@ -13,13 +13,12 @@ const slider = document.querySelector('.slider');
 
 M.Slider.init(slider, {
     indicators: false,
-    height: 500,
+    height: 521,
     transition: 500,
-    interval: 6000
+    interval: 2000
 });
 
 $(".toggle-password").click(function() {
-
     $(this).toggleClass("fa-eye fa-eye-slash");
     var input = $($(this).attr("toggle"));
     if (input.attr("type") == "password") {
@@ -30,6 +29,6 @@ $(".toggle-password").click(function() {
 });
 
 
-//Scrollspy
-const ss = document.querySelectorAll('.scrollspy');
-M.Scrollspy.init(ss, {});
+// //Scrollspy
+// const ss = document.querySelectorAll('.scrollspy');
+// M.Scrollspy.init(ss, {});
