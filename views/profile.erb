@@ -7,6 +7,9 @@
   <button type="submit">Delete Account</button>
 </form>
 
+
+
+<div class="">
 <h3>What do you want to write about today?</h3>
 
 <form method="POST" action="/post/new">
@@ -16,10 +19,43 @@
   <button type="submit">Post</button>
 
 </form>
+</div>
 
-<% @posts.each do |post|%>
-<a href='/post/<%=post.id%>'><h6> <%=post.post_name%></h6></a> 
-<%end%>
+<!-- This is the main profile past posts -->
+<div class="row">
+  <div class="col s9 push-s3">
+    <% @posts.each do |post|%>
+    <section class="section section center">
+   
+        <div class="container-profilePost">
+          <div >
+            <div class="card">
+              <div class="card-image">
+                <img src="/images/sky.jpg" alt="">
+              </div>
+              <div class="card-content">
+                <a href='/post/<%=post.id%>'><h4> <%=post.post_name%></h4></a> <p><h5> <%=post.content.truncate(259, separator: ' ')%></h5> </p>
+              </div>     
+            </div>
+          </div>
+        </div>    
 
-<%# <%=@other_user.first_name%>
-<% @posts = Post.where(user_id: @user.id)%>
+    </section>
+    <%end%>
+  </div>
+<!-- Recent Posts by other users -->
+  <div class="col s3 pull-s9">
+    <div><h2>Recent Posts</h2></div>
+     <% @posts.each do |posts| %>
+    <div class="card blue lighten-3" id="scrollbar">
+     
+      <div class="card-content white-text">
+        <span class="card-title"><a href='/post/<%=posts.id%>'><h5> <%=posts.post_name%></h5></a></span>
+        <p><h6><%=posts.content.truncate(85, separator: ' ')%></h6> </p>
+        <%puts  posts.content.length%>
+      </div>
+     
+       <%end%>
+    </div>
+  </div>
+</div>		

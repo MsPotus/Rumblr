@@ -28,7 +28,10 @@ $(".toggle-password").click(function() {
     }
 });
 
+// $( document ).ready(function)
+$(".dropdown-trigger").dropdown({ hover: false });
 
-// //Scrollspy
+
+//Scrollspy
 // const ss = document.querySelectorAll('.scrollspy');
 // M.Scrollspy.init(ss, {});
