@@ -35,3 +35,8 @@ $(".dropdown-trigger").dropdown({ hover: false });
 //Scrollspy
 // const ss = document.querySelectorAll('.scrollspy');
 // M.Scrollspy.init(ss, {});
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+});

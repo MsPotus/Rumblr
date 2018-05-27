@@ -34,7 +34,7 @@
                 <img src="/images/sky.jpg" alt="">
               </div>
               <div class="card-content">
-                <a href='/post/<%=post.id%>'><h4> <%=post.post_name%></h4></a> <p><h5> <%=post.content.truncate(259, separator: ' ')%></h5> </p>
+                <a href='/post/:id<%=post.id%>'><h4> <%=post.post_name%></h4></a> <p><h5> <%=post.content.truncate(259, separator: ' ')%></h5> </p>
               </div>     
             </div>
           </div>
@@ -45,17 +45,20 @@
   </div>
 <!-- Recent Posts by other users -->
   <div class="col s3 pull-s9">
-    <div><h2>Recent Posts</h2></div>
-     <% @posts.each do |posts| %>
-    <div class="card blue lighten-3" id="scrollbar">
-     
-      <div class="card-content white-text">
-        <span class="card-title"><a href='/post/<%=posts.id%>'><h5> <%=posts.post_name%></h5></a></span>
+    <div class="scrollbar" id="ex3">
+     <div class="card blue lighten-4" id="scrollbar">
+      <div class="content"></div>
+        <div><h3>Recent Posts</h3></div>
+            <% @postids.each do |id| %>
+            <%= @notposts = Post.where.not(id: id) %>
+            <% @notposts.each do |posts| %>
+          <div class="card-content white-text">
+          <span class="card-title"><a href='/posts/ <%=posts.id%>'><h5> <%=posts.post_name%></h5></a></span>
         <p><h6><%=posts.content.truncate(85, separator: ' ')%></h6> </p>
-        <%puts  posts.content.length%>
       </div>
-     
-       <%end%>
+        <% end %>
+        <%end%>
     </div>
+    </div>  
   </div>
 </div>		

@@ -9,9 +9,38 @@ require_relative './models/Post'
 
 # set :database, {adapter: 'postgresql', database: 'usersandposts'}
 enable :sessions
+set :sessions, true
 
+# This is the home page
 get '/' do
   erb :index
+end
+
+# show for signing in new users
+get '/signup' do
+  erb :'/signup'
+end
+
+# login in users who is already signup
+get '/login' do
+  erb :'/login'
+end
+
+# This is the logout page
+get '/logout' do
+    # Clear all sessions  
+  session.clear
+    # You can also just set the session to nil like this : session[:id] = nil
+  redirect '/'
+end
+
+
+
+#gets other peoples blog posts
+get '/posts/' do
+    @users = User.find(session[:id]).all
+    @posts = Post.where.not(user_id: @user.id).limit(20)
+    erb :profile
 end
 
 # Get details on specific post
@@ -20,6 +49,7 @@ get '/post/:id' do
     erb :post
 end
 
+
 # Get details on specific user and their posts
 # get '/users/:id' do
 #   @specific_user = User.find(params[:id])
@@ -27,36 +57,14 @@ end
 #   erb :profile
 # end
 
-#gets other peoples blog posts
-get '/posts/' do
-    @user = User.find(session[:id])
-    @posts = Post.where.not(user_id: @user.id).limit(20)
-    erb :profile
-end
-
-# This is the signup page
-get '/signup' do
-  erb :'/signup'
-end
-
-# This is the logout page
-get '/logout' do
-    # Clear all sessions  
-  session.clear
-    # You can also just set the session to nil like this : session[:id] = nil
-  redirect '/login'
-end
 
 
-# This is the login page
-get '/login' do
-  erb :'/login'
-end
 
 # This sents a current user to their profile page 
 get '/profile' do
   @user = User.find(session[:id])
   @posts = Post.where(user_id: session[:id])
+  @postids =Post.where(user_id: session[:id]).pluck(:id)
     erb :profile
 end
 
@@ -83,7 +91,7 @@ post '/user/login' do
   @user = User.find_by(email: params[:email], password: params[:password])
     if @user != nil
       session[:id] = @user.id
-        erb :profile
+        redirect '/profile/:id'
     else   
         #Could not find this user. Redirecting them to the signup page
         redirect '/'
