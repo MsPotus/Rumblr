@@ -1,0 +1,28 @@
+
+<form action="/user/<%= @user.id %>" method="post">
+  <input type="hidden" name="_method" value="PUT">
+  <input type="text" name="first_name" value="<%= @user.first_name %>">
+  <input type="text" name="last_name" value="<%= @user.last_name %>">
+  <input type="text" name="password" value="<%= @user.password %>">
+  <input type="text" name="birth_date" value="<%= @user.birth_date %>">
+  <button type="submit"> Edit </button>
+</form>
+
+
+<form action="/user/<%= @user.id %>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit"> Delete Account </button>
+</form>
+
+
+
+
+
+
+
+
+
+<h1><%=@other_user.first_name%></h1>
+<% @posts.each do |post|%>
+<a href='/post/<%=post.id%>'><h3> <%=post.post_name%></h3></a>   
+<%end%>

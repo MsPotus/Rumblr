@@ -1,6 +1,6 @@
 <a href='/profile'>Profile</a>
  <h3><%=@users = User.find(session[:id]first_name: params[:first_name], last_name: params[:last_name],).sample(20)%></h3>
-    <h3><%=@posts = Post.where.not(user_id: @user.id).all%>
+    <h3><%=@posts = Post.where.not(user_id: @user.id).shuffle%>
 
 <h3> <%=@post.post_name%></h3>
 <p><%=@post.content%></p>

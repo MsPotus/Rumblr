@@ -1,0 +1,12 @@
+<form action="/user/post/<%= @posts.id %>" method="post">
+  <input type="hidden" name="_method" value="PUT">
+  <input type="text" name="post_name" value="<%= @posts.post_name %>">
+  <input type="text" name="content" value="<%= @posts.content %>">
+  <button type="submit"> Edit Post </button>
+</form>
+
+
+<form action="/user/post/<%= @posts.id %>" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit"> Delete Post </button>
+</form>

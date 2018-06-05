@@ -13,7 +13,7 @@ const slider = document.querySelector('.slider');
 
 M.Slider.init(slider, {
     indicators: false,
-    height: 521,
+    height: 950,
     transition: 500,
     interval: 2000
 });
@@ -32,11 +32,8 @@ $(".toggle-password").click(function() {
 $(".dropdown-trigger").dropdown({ hover: false });
 
 
-//Scrollspy
-// const ss = document.querySelectorAll('.scrollspy');
-// M.Scrollspy.init(ss, {});
 
-document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, options);
-});
+// document.addEventListener('DOMContentLoaded', function() {
+//     var elems = document.querySelectorAll('.modal');
+//     var instances = M.Modal.init(elems, options);
+// });

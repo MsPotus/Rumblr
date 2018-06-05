@@ -19,57 +19,44 @@
           <a href="#!" class="brand-logo center">FreshWord</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
            <ul class="right hide-on-small-only">
+           
             <li>
-              <a href='/'>Home</a>
+              <a href='/'></a>
             </li>
-            <li>
-              <a href='/signup'>Sign Up</a>
-            </li>
-            <li>
-              <a href='/login'>Log In</a>
-            </li>
-            <li>
-              <a href='/logout'>Log Out</a>
-            </li>
-
-            <li>
-              <!-- Dropdown Trigger -->
-            <li><a class="dropdown-trigger" href='/profile' data-target="dropdown1">Account<i class="material-icons right">arrow_drop_down</i></a></li>
-            </li>
-            <!-- Dropdown Structure -->
-            <ul id="dropdown1" class="dropdown-content">
-              <li><a href="#!">Account</a></li>
-              <li><a href="#!">Delete Account</a></li>
-              <!-- <li class="divider"></li> -->
-              <li><a href="#!">Edit Account</a></li>
+              <% if session[:id] == nil %>
+                <li>
+                  <a href='/signup'>Sign Up</a>
+                </li>
+                <li>
+                  <a href='/login'>Log In</a>
+                </li>
+                <% else %>  
+                <li>
+                  <a href='/logout'>Log Out</a>
+                </li>
+                <% end %>
             </ul>
           </ul>
         </div>
-      <%# </div> %>
+      
     </nav>
   </div>
   <ul class="sidenav" id="mobile-demo">
     <li>
-      <a href='/'>Home</a>
+      <a href='/'></a>
     </li>
-    <li>
-      <a href='/signup'>Sign Up</a>
-    </li>
-    <li>
-      <a href='/login'>Log In</a>
-    </li>
-    <li>
-      <a href='/logout'>Log Out</a>
-    </li>
-
-    <li><a class="dropdown-trigger" href='/profile' data-target="dropdown1">Account<i class="material-icons right">arrow_drop_down</i></a></li>
-    </li>
-            <!-- Dropdown Structure -->
-      <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Account</a></li>
-        <li><a href="#!">Delete Account</a></li>
-        <!-- <li class="divider"></li> -->
-        <li><a href="#!">Edit Account</a></li>
+         <% if session[:id] == nil %>
+        <li>
+          <a href='/signup'>Sign Up</a>
+        </li>
+        <li>
+          <a href='/login'>Log In</a>
+        </li>
+    <% else %>  
+        <li>
+          <a href='/logout'>Log Out</a>
+        </li>
+  <% end %>
       </ul>
   </ul>
 <main>

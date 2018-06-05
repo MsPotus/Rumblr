@@ -35,11 +35,25 @@ get '/logout' do
 end
 
 
+#edit user, user can edit their profile
+get '/user/:id/edit' do
+	@user = User.find(session[:id])
+    erb :edit_user
+end
 
-#gets other peoples blog posts
+# edits the User data with w/e user editted.
+put '/user/:id' do
+   @user = User.find(session[:id])
+   @user.update(first_name: params[:first_name], last_name: params[:last_name], password: params[:password], birth_date: params[:birth_date])
+   erb :profile
+end
+
+
+#gets other people's posts
 get '/posts/' do
     @users = User.find(session[:id]).all
     @posts = Post.where.not(user_id: @user.id).limit(20)
+    @username = User
     erb :profile
 end
 
@@ -49,14 +63,30 @@ get '/post/:id' do
     erb :post
 end
 
+# users can edit their own posts - get specific post will be by id
+get '/user/post/:post/edit' do
+	@user = User.find(session[:id])
+	@post = post.find_by(user_id: @user.id)
+	@posts = Post.find(params[:post])
+	erb :edit_post
+end
 
-# Get details on specific user and their posts
-# get '/users/:id' do
-#   @specific_user = User.find(params[:id])
-#   @posts = Post.where(user_id: session[:id])
-#   erb :profile
-# end
+# edit part for post, takes you back to user post
+put '/user/post/:post' do
+	@user = User.find(session[:id])
+	@post = Post.find_by(user_id: @user.id)
+	@posts = Post.find(params[:post])
+	@posts.update(post_id: @post.id, post_name: params[:post_name], content: params[:content])
+    redirect '/user/profile'
+end
 
+
+#User can edit post name
+get '/user/post/:id/edit' do
+	@user = User.find(session[:id])
+	@post = Post.find_by(user_id: @user.id)
+	erb :edit_post
+end
 
 
 
@@ -68,22 +98,13 @@ get '/profile' do
     erb :profile
 end
 
-# get '/Account/:id' do 
-#    @user = User.find(session[:id])
-#    if @user != nil
-#     session[:id] = @user.id
-#   erb :profile
-# else 
-#   redirect '/'
-  
+
+
+# #Render form for editing a user
+# get '/profile/:id/edit' do 
+#     @specific_user = User.find(params[:id])
+#     erb :edit
 # end
-
-
-#Render form for editing a user
-get '/profile/:id/edit' do 
-    @specific_user = User.find(params[:id])
-    erb :edit
-end
 
 
 # Search for user in login
@@ -91,7 +112,7 @@ post '/user/login' do
   @user = User.find_by(email: params[:email], password: params[:password])
     if @user != nil
       session[:id] = @user.id
-        redirect '/profile/:id'
+        redirect '/profile'
     else   
         #Could not find this user. Redirecting them to the signup page
         redirect '/'
